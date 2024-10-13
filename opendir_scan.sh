@@ -3,8 +3,8 @@
 # User Agent #
 _UA='"Yarrow Open-Source Scanner V1.00.011024.A"'
 
-# API Username and Password #
-_auth='3d45c090-702c-43da-a3f1-a134f5299907:YCeWVa7FXhZHZVxiYK4JzLVeKHDV4agv'
+# API Username and Password: Enter your own #
+_auth='USERNAME:PASS'
 
 # Censys URL #
 _baseurl='"https://search.censys.io/api/v2/hosts/search?q='
