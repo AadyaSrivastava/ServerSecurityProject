@@ -35,7 +35,7 @@ do
 
     # Generate UID to store data
     _UID=$(date +%s)
-    mkdir "$_UID"
+    mkdir OPENDIRS_"$_UID"
 
     # Record tracker
     ((_recread=_recread+1))
@@ -93,7 +93,7 @@ do
         done
 
     # Move files into the unique folder
-    mv $_UID* $_UID
+    mv $_UID* OPENDIRS_"$_UID"
     
     # Check if next next is available
     if [ -z "$_next" ]
