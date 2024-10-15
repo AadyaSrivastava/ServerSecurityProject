@@ -42,7 +42,6 @@ Yarrow will create the following outputs:
 - Unique files that contain the list of IP and port number of servers
 - Feed file that contains the list of IP and port number of servers in the format:
 
-    ------------------------------------
-    Timestamp    IP    Port    Full URL
-    ------------------------------------
+        Timestamp    IP    Port    Full URL
+        ------------------------------------
 
