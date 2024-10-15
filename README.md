@@ -30,9 +30,9 @@ Censys (www.censys.io)
 # How to setup?
 Since Yarrow is coded in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems. 
 
-Download the file: yarrow_opendirs.sh to your computer and enter Censys API credentials in line 7 and save the file.
+Step 1:Download the file: yarrow_opendirs.sh to your computer and enter Censys API credentials in line 7 and save the file.
 
-To run the platorm simply download the file to a location and type the following in the terminal:
+Step 2: Run the platorm simply download the file to a location and type the following in the terminal:
 
 `chmod +x yarrow_opendirs.sh
 `
