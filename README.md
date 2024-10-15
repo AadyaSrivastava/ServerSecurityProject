@@ -50,4 +50,4 @@ Yarrow will create the following outputs:
 <br><br>
 # Access Feed File
 
-Feed files are available in folder, "Feed" within repository that contains files that bear the filename of the day and time they were created. The files are space delimited. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Censys, Yarrow, and other partners. For more information please contact me at yarrow@___.com
+Feed files are available in folder, "Feed" within repository that contains files that bear the filename of the day and time they were created. The files are space delimited. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Censys, Yarrow, and other partners. For more information please contact me at yarrow@kidsforreading.com
