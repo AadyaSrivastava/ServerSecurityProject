@@ -23,7 +23,7 @@ Yarrow is published an open-source non-commerical platform that generates feeds 
 **Project Supported by:**<br>
 Censys (www.censys.io)
 <br><br>
-**Project Mentor**: Dr. Nived Chebrolu, Oxford University<br>
+**Project Mentor**:  Dr. Nived Chebrolu, Oxford University<br>
 **Project Founder**: Aadya Srivastava, Student at NAS Dubai<br>
 <br><br>
 # How to setup?
