@@ -39,6 +39,7 @@ To run the platorm simply download the file to a location and type the following
 
 `./yarrow_opendirs.sh
 `
+<br><br>
 Yarrow will create the following outputs:
 - Timestamped folder that will save the results from Censys,
 - Unique files that contain the list of IP and port number of servers
