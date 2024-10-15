@@ -35,9 +35,8 @@ Download the file: yarrow_opendirs.sh to your computer and enter Censys API cred
 To run the platorm simply download the file to a location and type the following in the terminal:
 
 `chmod +x yarrow_opendirs.sh
-<br><br>
-`./yarrow_opendirs.sh
-
+./yarrow_opendirs.sh
+`
 Yarrow will create the following outputs:
 - Timestamped folder that will save the results from Censys,
 - Unique files that contain the list of IP and port number of servers
