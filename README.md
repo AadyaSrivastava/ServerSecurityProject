@@ -42,7 +42,7 @@ Step 2: Run the platorm simply download the file to a location and type the foll
 Yarrow will create the following outputs:
 - Timestamped folder that will save the results from Censys,
 - Unique files that contain the list of IP and port number of servers
-- Feed file that contains the list of IP and port number of servers in the format:
+- Feed file that contains the timestampe (space delimited Date and Time) list of IP and port number of servers in the format:
 
         Timestamp    IP    Port    Full URL
         ------------------------------------
