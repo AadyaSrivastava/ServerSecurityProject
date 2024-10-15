@@ -1,6 +1,6 @@
 # **YARROW** 
 ### An open-source Internet scanner that monitors open-directories and detects phishing pages.
-<br><br>
+<br>
 Yarrow, an open-source and modular internet scanner that assists in the passive detection of:
 - Module 1: Servers with open directories that list executables and 
 - Module 2: Server that hosts phishing pages. 
