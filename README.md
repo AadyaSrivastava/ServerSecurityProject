@@ -26,3 +26,23 @@ Censys (www.censys.io)
 <br><br>
 **Project Mentor**: Dr. Nived Chebrolu, Oxford University<br>
 **Project Founder**: Aadya Srivastava, Student at NAS Dubai<br>
+<br><br>
+# How to setup?
+Since Yarrow is coded in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems. 
+
+Download the file: yarrow_opendirs.sh to your computer and enter Censys API credentials in line 7 and save the file.
+
+To run the platorm simply download the file to a location and type the following in the terminal:
+
+chmod +x yarrow_opendirs.sh
+./yarrow_opendirs.sh
+
+Yarrow will create the following outputs:
+- Timestamped folder that will save the results from Censys,
+- Unique files that contain the list of IP and port number of servers
+- Feed file that contains the list of IP and port number of servers in the format:
+
+    ------------------------------------
+    Timestamp    IP    Port    Full URL
+    ------------------------------------
+
