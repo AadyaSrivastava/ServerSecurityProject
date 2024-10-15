@@ -145,6 +145,6 @@ do
         read a
         _process=true
     fi
-    exit
+    
 
 done
