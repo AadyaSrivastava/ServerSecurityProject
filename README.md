@@ -10,10 +10,9 @@ Yarrow's first module intends to ensure that the interet is a safe and secure sp
 
 Yarrow's second module detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that will enable detection of any phishing page for email, corporate logins, payment providers, or other pages that may be used to malicisouly harvest credentials. 
 
-Yarrow is supported as a research project by Censys API that enables internet scanning for support both the modules. Yarrow drills further in the results and obtains the file's checksums (hashes) and then scans the output against several malware databases. 
+Yarrow is supported as a research project by Censys API that enables internet scanning for both the modules. Yarrow uses the results and then drills further by obtaining Portable Executable (EXE) checksums and then analyses them across several malware databases. 
 
-
-Yarrow published open-source feeds that contain list of Servers that host malicious files or phishing pages under MIT license.
+Yarrow is published an open-source non-commerical platform that generates feeds containing list of Servers that host malicious files or phishing pages under MIT license.
 <br><br>
 
 **Task List for module**
