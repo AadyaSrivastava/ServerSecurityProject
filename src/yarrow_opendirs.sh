@@ -44,20 +44,20 @@ do
     # mkdir OPENDIRS_"$_DIRUID"
     ((_recread=_recread+1))
  
-    if [ "$_firstrun" = false ] ; then
+    # if [ "$_firstrun" = false ] ; then
         
-        # Next Run query for Censys
-        curl -s -m 30 -X 'GET' -H "accept: application/json" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22&per_page=1&fields=ip%2Cservices.port&cursor=$_next" -o "$_UID"_output.txt
+    #     # Next Run query for Censys
+    #     curl -s -m 30 -X 'GET' -H "accept: application/json" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22&per_page=1&fields=ip%2Cservices.port&cursor=$_next" -o "$_UID"_output.txt
     
-    fi
+    # fi
     
-    if [ "$_firstrun" = true ] ; then
+    # if [ "$_firstrun" = true ] ; then
         
-        # First run query for Censys
-        curl -s -m 30 -X 'GET' -H "accept: application/json" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22&per_page=1&fields=ip%2Cservices.port" -o "$_UID"_output.txt
+    #     # First run query for Censys
+    #     curl -s -m 30 -X 'GET' -H "accept: application/json" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22&per_page=1&fields=ip%2Cservices.port" -o "$_UID"_output.txt
 
-        _firstrun=false
-    fi
+    #     _firstrun=false
+    # fi
     
 
     # load output in memory #
@@ -105,11 +105,11 @@ do
 
         # Get file-list from live server #
         if [[ "$_port" == "443" ]]; then 
-            _curlstatus=$(curl -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
-            # curl -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname" 
+            # _curlstatus=$(curl -K -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
+            curl -m 30 -k -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"
         else
-            _curlstatus=$(curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
-            # curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname" 
+            # _curlstatus=$(curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
+            curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname" 
         fi
 
         if [ $? -ne 0 ] ; then
@@ -168,13 +168,14 @@ do
 
     # move Censys response to storage folder #
     mv "$_UID"_output.txt OPENDIRS_"$_DIRUID"
-
+    
     if [ -z "$_next" ]
     then
         echo "This is the last entry, quitting.."
         
         # Exit while loop #
         _process=false
+        exit
     else
         echo Processed: "$_recread"  Errors: "$_errors"  Total Records: "$_total"
     
@@ -184,6 +185,6 @@ do
         # read a
         _process=true
     fi
-    
+    exit
 
 done #end of while [ _process=true ]
