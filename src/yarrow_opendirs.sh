@@ -4,7 +4,7 @@
 _UA='"Yarrow Open-Source Scanner V1.00.011024.A"'
 
 # API Username and Password #
-_auth='user:pass'
+_auth='USER:PASS'
 
 # Censys URL #
 _baseurl='"https://search.censys.io/api/v2/hosts/search?q='
@@ -62,7 +62,7 @@ do
 
     # load output in memory #
     _input=$(cat "$_UID"_output.txt)
-
+    
     # Get Mactched Services Element #
     _melementraw=${_input#*\"matched_services\"\:\ }
     _melement=${_melementraw%%\"links\"\:*}
@@ -81,29 +81,35 @@ do
  
     # Get Ports
     _occurances=$(echo -n $_melement | grep -Fo '"port":' | wc -l)
-    
-    # Get port numbers in response and load them in an array #
-    for ((i=0; i<_occurances; i++))
+    echo port occurs: $_occurances
+
+      # Get port numbers in response and load them in an array #
+    for ((i=2; i<=_occurances+1; i++))
     do
-        _portraw=${_melement#*\"port\"\:\ }
+        _out[$i]=$(awk -v _i="$i" -F'\"port\"\:' '{print $_i}' <<<$_melement)
+        # echo 1_out[$i]: ${_out[$i]}
+        _portraw=${_out[$i]#*\"port\"\:\ }
         _out[$i]=${_portraw%%\}*} 
+        echo _out[$i]: ${_out[$i]}
     done
     
     # Generate Feed #
-    for ((i=0; i<_occurances; i++))
-    do
-
+    for ((i=2; i<=_occurances+1; i++))
+    do  
+       
         # Parse port and get file listing from remote server #
         _port=$(echo ${_out[$i]} | tr -d ' ')
-        
+
         # generate temorary filename #
         _cfname=$(echo "$_UID"-"$_ipadd"-"$_port".txt)
 
         # Get file-list from live server #
         if [[ "$_port" == "443" ]]; then 
             _curlstatus=$(curl -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
+            # curl -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname" 
         else
             _curlstatus=$(curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
+            # curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname" 
         fi
 
         if [ $? -ne 0 ] ; then
@@ -124,7 +130,6 @@ do
             echo " " >> connect_error.txt
             
         else
-
             # Perform local scan to check if output file has .exe in response #
             _lscan=$(cat "$_cfname" | grep .exe)
 
@@ -154,8 +159,10 @@ do
                 rm -rf "$_cfname"
             
             fi # end of if [[ $_sz -gt 0 ]]; then 
-
+        
         fi # end of if [ $? -ne 0 ] ; then
+
+        
 
     done # end of for ((i=0; i<_occurances; i++))
 
