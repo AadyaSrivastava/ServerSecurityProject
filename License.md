@@ -1,9 +1,9 @@
-Citation:
-Using feeds and source code is possible without restrictions and is goverened by the license as below. However, citiation is requested as per:
-Back-end feed provided by: Censys (www.censys.com)
-Generated feeds provided by: Yarrow project as mentoed by Dr. Nived Chebrolu and coded by Aadya Srivastava  
+### Citation:
+Using feeds and source code is possible without restrictions and is goverened by the license as below. However, citiation is requested as per:<br>
+Back-end feed provided by: Censys (www.censys.com)<br>
+Generated feeds provided by: Yarrow project as mentoed by Dr. Nived Chebrolu and coded by Aadya Srivastava  <br><br>
 
-LICENSE TERMS
+### LICENSE TERMS
 --------------
 Copyright 2024
 
