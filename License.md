@@ -1,10 +1,10 @@
-### Citation:
+### Citation
 Feel free to use the feeds and source code without restrictions that are goverened by the license terms (as below). Citiation is requested by placing the following text:<br>
 <br>
 Back-end feed providor: Censys (www.censys.com)<br>
 Generated and software feeds provided by: Yarrow project mentored by Dr. Nived Chebrolu and coded by Aadya Srivastava <br><br>
 
-### LICENSE TERMS
+### License Terms
 Copyright 2024
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
