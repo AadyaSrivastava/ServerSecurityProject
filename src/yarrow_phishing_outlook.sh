@@ -91,7 +91,7 @@ do
         # echo 1_out[$i]: ${_out[$i]}
         _portraw=${_out[$i]#*\"port\"\:\ }
         _out[$i]=${_portraw%%\}*} 
-        echo _out[$i]: ${_out[$i]}
+        # echo _out[$i]: ${_out[$i]}
     done
     
     # Generate Feed #
@@ -105,7 +105,7 @@ do
 
         # Get suspected phishing page from live server #
         if [[ "$_port" == "443" ]]; then 
-            _curlstatus=$(curl -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
+            _curlstatus=$(curl -k -m 30 -L -A "$_UA" https://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
         else
             _curlstatus=$(curl -m 30 -L -A "$_UA" http://"$_ipadd":"$_port" -o "$_cfname"  2>&1)
         fi
