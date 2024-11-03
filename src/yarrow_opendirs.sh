@@ -41,23 +41,23 @@ _inp2="$2"
 case "$1" in
     1)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.postal_code%3A$_qcase"
-        _title='Post Code Scan'
+        _title="SCAN RESULTS FOR POST CODE: $_qcase"
         ;;
     2)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.city%3A$_qcase"
-        _title='City Scan'
+        _title="SCAN RESULTS FOR CITY: $_qcase"
         ;;
     3)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.country_code%3A$_qcase"
-        _title='Country Scan'
+        _title="SCAN RESULTS FOR COUNTRY CODE: $_qcase"
         ;;
     4)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20name%3A$_qcase"
-        _title='Hostname Scan'
+        _title="SCAN RESULTS FOR HOSTNAME: $_qcase"
         ;;
     5)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22"
-        _title='Internet Wide Scan'
+        _title="SCAN RESULTS FOR THE COMPLETE INTERNET"
         ;;
     *)
         echo Exiting. Error code: ERRC1
