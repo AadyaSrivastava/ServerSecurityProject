@@ -41,23 +41,23 @@ _inp2="$2"
 case "$1" in
     1)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.postal_code%3A$_qcase"
-        _title="SCAN RESULTS FOR POST CODE: $_qcase"
+        _title="AUDIT REPORT FOR POST CODE: $_qcase"
         ;;
     2)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.city%3A$_qcase"
-        _title="SCAN RESULTS FOR CITY: $_qcase"
+        _title="AUDIT REPORT FOR CITY: $_qcase"
         ;;
     3)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.country_code%3A$_qcase"
-        _title="SCAN RESULTS FOR COUNTRY CODE: $_qcase"
+        _title="AUDIT REPORT FOR COUNTRY CODE: $_qcase"
         ;;
     4)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20name%3A$_qcase"
-        _title="SCAN RESULTS FOR HOSTNAME: $_qcase"
+        _title="AUDIT REPORT FOR HOSTNAME: $_qcase"
         ;;
     5)
         _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22"
-        _title="SCAN RESULTS FOR THE COMPLETE INTERNET"
+        _title="AUDIT REPORT FOR THE COMPLETE INTERNET"
         ;;
     *)
         echo Exiting. Error code: ERRC1
@@ -79,7 +79,8 @@ _firstrun=true
 
 echo "<html>" > Output_Feed_"$_DIRUID".html
 echo "<body>" >> Output_Feed_"$_DIRUID".html
-echo "<b>$_title</b><br>" >> Output_Feed_"$_DIRUID".html
+echo "<br><b>OPEN DIRECTOR SERVER LIST</b><br>" >> Output_Feed_"$_DIRUID".html
+echo "<br><b>$_title</b><br><br>" >> Output_Feed_"$_DIRUID".html
 echo "<b>Day_Time,Country,City,IP:Port,URL,Raw_Response,Remote_Server</b><br>" >> Output_Feed_"$_DIRUID".html
 echo "<html>" > Error_Feed_"$_DIRUID".html
 echo "<body>" >> Error_Feed_"$_DIRUID".html
