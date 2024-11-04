@@ -40,24 +40,26 @@ _inp2="$2"
 
 case "$1" in
     1)
-        _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.postal_code%3A$_qcase"
-        _title="AUDIT REPORT FOR POST CODE: $_qcase"
+        _query="labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29%20and%20location.postal_code%3A$_qcase"
+        _title="OPEN DIRECTORY AUDIT REPORT FOR POST CODE: $_qcase"
         ;;
     2)
-        _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.city%3A$_qcase"
-        _title="AUDIT REPORT FOR CITY: $_qcase"
+        _query="labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29%20and%20location.city%3A$_qcase"
+        _title="OPEN DIRECTORY AUDIT REPORT FOR CITY: $_qcase"
         ;;
     3)
-        _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.country_code%3A$_qcase"
-        _title="AUDIT REPORT FOR COUNTRY CODE: $_qcase"
+        # labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29
+        _query="labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29%20and%20location.country_code%3A$_qcase"
+        # _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20location.country_code%3A$_qcase"
+        _title="OPEN DIRECTORY AUDIT REPORT FOR COUNTRY CODE: $_qcase"
         ;;
     4)
-        _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22%20and%20name%3A$_qcase"
-        _title="AUDIT REPORT FOR HOSTNAME: $_qcase"
+        _query="labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29%20and%20name%3A$_qcase"
+        _title="OPEN DIRECTORY AUDIT REPORT FOR HOSTNAME: $_qcase"
         ;;
     5)
-        _query="labels%3Aopen-dir%20and%20services.http.response.body%3A%20%22.exe%22"
-        _title="AUDIT REPORT FOR THE COMPLETE INTERNET"
+        _query="labels%3Aopen-dir%20and%20%28services.http.response.body%3A%22.dmg%22%20or%20services.http.response.body%3A%22.exe%22%29"
+        _title="OPEN DIRECTORY AUDIT REPORT FOR THE COMPLETE INTERNET"
         ;;
     *)
         echo Exiting. Error code: ERRC1
@@ -65,7 +67,7 @@ case "$1" in
 esac
 
 # Fields #
-_fields='ip%2Cservices.port%2Clocation.city%2Clocation.country%2Cwhois.organization.abuse_contacts.email%2Cservices.tls.certificate.names'
+_fields='ip%2Cservices.port%2Cdns.names%2Clocation.city%2Clocation.country%2Cwhois.organization.abuse_contacts.name%2Cwhois.organization.abuse_contacts.email%2Cwhois.organization.tech_contacts.name%2Cwhois.organization.tech_contacts.email%2Cwhois.organization.admin_contacts.name%2Cwhois.organization.admin_contacts.email%2Cservices.tls.certificate.names%2Coperating_system.cpe%2Cservices.software.cpe%2Clast_updated_at'
 
 # Results Per Page #
 _results='1'
@@ -79,9 +81,7 @@ _firstrun=true
 
 echo "<html>" > Output_Feed_"$_DIRUID".html
 echo "<body>" >> Output_Feed_"$_DIRUID".html
-echo "<br><b>OPEN DIRECTOR SERVER LIST</b><br>" >> Output_Feed_"$_DIRUID".html
-echo "<br><b>$_title</b><br><br>" >> Output_Feed_"$_DIRUID".html
-echo "<b>Day_Time,Country,City,IP:Port,URL,Raw_Response,Remote_Server</b><br>" >> Output_Feed_"$_DIRUID".html
+echo "<br><h1><b>$_title</b></h1><br>" >> Output_Feed_"$_DIRUID".html
 echo "<html>" > Error_Feed_"$_DIRUID".html
 echo "<body>" >> Error_Feed_"$_DIRUID".html
 echo "<b>Day_Time,Country,City,IP:Port,URL</b><br>" >> Error_Feed_"$_DIRUID".html
@@ -94,14 +94,14 @@ do
     if [ "$_firstrun" = false ] ; then
         
         # Next Run query for Censys
-        curl -s -m 30 -X 'GET' -H "$_basheader" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=${_query}&per_page=1&virtual_hosts=EXCLUDE&sort=RELEVANCE&fields=${_fields}&cursor=$_next" -o "$_UID"_output.txt
+        curl -s -m 30 -X 'GET' -H "$_basheader" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=${_query}&per_page=1&fields=${_fields}&cursor=$_next" -o "$_UID"_output.txt
     
     fi
     
     if [ "$_firstrun" = true ] ; then
         
         # First run query for Censys
-        curl -s -m 30 -X 'GET' -H "$_basheader" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=${_query}&per_page=1&virtual_hosts=EXCLUDE&sort=RELEVANCE&fields=${_fields}" -o "$_UID"_output.txt
+        curl -s -m 30 -X 'GET' -H "$_basheader" -A "$_UA" -u "$_auth" "https://search.censys.io/api/v2/hosts/search?q=${_query}&per_page=1&fields=${_fields}" -o "$_UID"_output.txt
         
         _firstrun=false
        
@@ -111,6 +111,10 @@ do
     # load output in memory #
     _input=$(cat "$_UID"_output.txt)
     
+    # Last updated #
+    _rawdata=${_input#*\"last_updated_at\"\:\ \"}
+    _lupdate=${_rawdata%%Z\"\,\ *}
+
     # Get Mactched Services Element #
     _melementraw=${_input#*\"matched_services\"\:\ }
     _melement=${_melementraw%%\"links\"\:*}
@@ -131,9 +135,9 @@ do
     _rawdata=${_input#*\"country\"\:\ \"}
     _country=${_rawdata%%\"\}*}
 
-    #  # Get Abuse Contact email
-    # _rawdata=${_input#*\"email\"\:\ \"}
-    # _abusect=${_rawdata%%\"\,*}
+     # Get Abuse Contact email
+    _rawdata=${_input#*\"email\"\:\ \"}
+    _abusect=${_rawdata%%\"\,*}
 
     # Get Next Cursor
     _rawdata=${_input#*\"next\"\:\ \"}
@@ -153,13 +157,18 @@ do
         # echo _out[$i]: ${_out[$i]}
     done
 
-   
-    # echo _total: $_total 
-    # echo _ipadd: $_ipadd 
-    # echo city: $_city 
-    # echo Country: $_country 
-    # exit
+    # Get OS cpe #
+    _rawdata=${_input#*\"operating_system\"\:\ \{\"cpe\"\:\ \"}
+    _oscpe=${_rawdata%%\"\}*}
 
+    # Get DNS names #
+    _rawdata=${_input#*\"dns\"\:\ \{\"names\"\:\ \[}
+    _dnsnames=${_rawdata%%\]\}\,*}
+
+    # Get software count
+    _soccurances=$(echo -n $_input | grep -Fo '{"software":' | wc -l)
+
+    
     # Generate Feed #
     for ((i=2; i<=_occurances+1; i++))
     do  
@@ -206,15 +215,53 @@ do
                 _ctime=$(date '+%d-%m-%Y_%H:%M:%S')
                 
                 # Save file lists in feed for production #
+                echo "<br><b>Server IP:</b> $_ipadd" >> Output_Feed_"$_DIRUID".html
+                echo "<br><b>Server Port:</b> $_port" >> Output_Feed_"$_DIRUID".html
+                echo "<br><b>Server Location:</b> $_city, $_country" >> Output_Feed_"$_DIRUID".html
+                
+                echo "<br><b>DNS Name:</b> $_dnsnames" >> Output_Feed_"$_DIRUID".html
+                echo "<br><b>Server OS:</b> $_oscpe" >> Output_Feed_"$_DIRUID".html
+                    
+                echo "<br><br><u>Server port and software info:</u><br>" >> Output_Feed_"$_DIRUID".html                 
+                # Get software-cpe combo and load them in an array #
+                for ((i=2; i<=_soccurances+1; i++))
+                do
+                    if [ $i -gt $_soccurances ]; then
+                        
+                        _sout[$i]=$(awk -v _i="$i" -F'\{\"software\"\:' '{print $_i}' <<<$_input)
+                        # echo FF: ${_sout[$i]}
+                        _cperaw=${_sout[$i]#*\[\{\"cpe\"\:\ \"}
+                        _cpe=${_cperaw%%\}\]\,\ \"m*}
+                        _cperaw1=$(echo $_cpe | tr -d \" | tr -d { | tr -d } | tr -d ] | tr -d \[) 
+                        _cpeport=${_cperaw1%?}
+                        # echo $_cpeport
+                        
+                    else
+                        _sout[$i]=$(awk -v _i="$i" -F'\{\"software\"\:' '{print $_i}' <<<$_input)
+                        # echo 1_out[$i]: ${_sout[$i]}
+                        # _portraw=${_out[$i]#*\"port\"\:\ }
+                        _cperaw=${_sout[$i]#*\[\{\"cpe\"\:\ \"}
+                        # _cpe=${_cperaw%%\"\}*}
+                        _cperaw1=$(echo $_cperaw | tr -d \" | tr -d { | tr -d } | tr -d ] | tr -d \[) 
+                        _cpeport=${_cperaw1%?}
+                        
+                    fi
+                    echo "$_cpeport<br>">> Output_Feed_"$_DIRUID".html
+                    # echo _cpe: $_cpe
+                    # echo _cpeport: $_cpeport
+                    # _out[$i]=${_cpe%%\"\}\]\,\ } 
+                    # echo _out[$i]: ${_out[$i]}
+                done
+
                 if [[ "$_port" == "443" ]]; then 
-                    echo "$_ctime,$_country,$_city,$_ipadd:$_port,<a href=./OPENDIRS_$_DIRUID/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>,<a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Output_Feed_"$_DIRUID".html
+                    echo "<br><b>Live URL:</b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Output_Feed_"$_DIRUID".html
                 else
-                    echo "$_ctime,$_country,$_city,$_ipadd:$_port,<a href=./OPENDIRS_$_DIRUID/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>,<a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Output_Feed_"$_DIRUID".html
-                
+                    echo "<br><b>Live URL:</b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Output_Feed_"$_DIRUID".html
                 fi
-
+                echo "<b>Dev Logs:</b> <a href=./OPENDIRS_$_DIRUID/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>" >> Output_Feed_"$_DIRUID".html
+                echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> Output_Feed_"$_DIRUID".html
+                echo "<br><br><hr width="100%" size="1"><br>" >> Output_Feed_"$_DIRUID".html
                 
-
                 # Remove working file #
                 rm -rf "$_cfname"
             else
