@@ -7,7 +7,7 @@ _documentemodule='module2.sh'
 
 echo ""
 echo "***************************************************"
-echo "**** Yarrow Open-Source Scanner V1.00.011024.A ****"
+echo "****   SSP Open-Source Scanner V1.00.011024.A  ****"
 echo "****                Main Screen                ****"
 echo "***************************************************"
 echo ""
