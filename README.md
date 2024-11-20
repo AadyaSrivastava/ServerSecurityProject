@@ -1,22 +1,24 @@
-# **ServerSecurityProject** 
-### An open-source Internet scanner that monitors open-directories and detects phishing pages.
+# **ServerSecurityProject (SSP)** 
+### An open-source passive Internet scanner that monitors open-directories and detects phishing pages.
 <br>
-Yarrow, an open-source and modular internet scanner that assists in the passive detection of:
-- Module 1: Servers with open directories that list executables and 
-- Module 2: Server that hosts phishing pages. 
+SSP is an open-source and modular internet scanner that assists in the passive detection of:
+- Module 1: Servers with open directories that host malicious executables, files;
+- Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and
+- Module 3: Detects phishing pages (customisable by a user to detect phishing against their own organisation).   
 
-Yarrow's first module intends to ensure that the interet is a safe and secure space by passively blocking threats without actions such as installation of anti-virus or other software(s) by end users. This scanner detects malware on Command and Control (C2) servers, inform the webhosts (admin and abuse contacts), and publishes a list of servers as non-commerical open-source lists. 
+SSP's first module intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
 
-Yarrow's second module detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that will enable detection of any phishing page for email, corporate logins, payment providers, or other pages that may be used to malicisouly harvest credentials. 
+SSP's second module detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
 
-Yarrow is supported as a research project by Censys API that enables internet scanning for both the modules. Yarrow uses the results and then drills further by obtaining Portable Executable (EXE) checksums and then analyses them across several malware databases. 
+SSP's third module detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
 
-Yarrow is published an open-source non-commerical platform that generates feeds containing list of Servers that host malicious files or phishing pages under MIT license.
+SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford University) and supported by Censys (censys.com, that originated at University of Michigan) that publishes an open-source (MIT license) server feed and follows a non-disclosure policy of 45 days. The 45 days disclosure may be extended on request of the hosting provider or website owner
+
 <br><br>
 
 **Task List for module**
 - [ ] Bridge with malware database
-- [ ] Integtate with domain datasbase
+- [ ] Integtate with Whois datasbase
 - [ ] Generate RSD
 
 <br><br>
@@ -27,7 +29,7 @@ Censys (www.censys.io)
 **Project Founder**: Aadya Srivastava, Student at NAS Dubai<br>
 <br><br>
 # How to setup?
-Since Yarrow is coded in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems. 
+SSP is developed in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems.  
 
 Step 1: Download the file: yarrow_opendirs.sh to your computer and enter Censys API credentials in line 7 and save the file.
 
@@ -39,7 +41,7 @@ Step 2: Run the platorm simply download the file to a location and type the foll
 `./yarrow_opendirs.sh
 `
 <br><br>
-Yarrow will create the following outputs:
+SSP creates the following outputs:
 - Timestamped folder that will save the results from Censys,
 - Unique files that contain the list of IP and port number of servers
 - Feed file that contains the timestampe (space delimited Date and Time) list of IP and port number of servers in the format:
