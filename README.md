@@ -32,7 +32,7 @@ Censys (www.censys.com)
 # Setup and Running
 SSP is developed in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems.  
 
-Step 1: Download the files in the source directory (SRC) and enter Censys API credentials in line 7 of module1.sh.
+Step 1: Download the files in the source directory (SRC) and enter Censys API credentials in line 12 of module1.sh.
 
 Step 2: Grant permissions to all three files by typing the following in the terminal:
 
