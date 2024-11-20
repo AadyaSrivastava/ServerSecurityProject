@@ -51,4 +51,4 @@ SSP creates the following outputs:
 <br><br>
 # Access Feed File
 
-Feed files are available in folder, "Feeds" within the repository that contains files that bear the filename of the day and time they were created. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Dr. Nived Chebrolu, Aadya Srivastava, Censys, SSP, and other partners. For more information please contact us at contact [at] serversecurityproject [.] com
+Feed files are available in folder, "feed" within the repository that contains files that bear the filename of the day and time they were created. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Dr. Nived Chebrolu, Aadya Srivastava, Censys, SSP, and other partners. For more information please contact us at contact [at] serversecurityproject [.] com
