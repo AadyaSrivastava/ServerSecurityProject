@@ -2,7 +2,7 @@
 Feel free to use the feeds and source code without restrictions that are goverened by the license terms (as below). Citiation is requested by placing the following text:<br>
 <br>
 Back-end feed providor: Censys (www.censys.com)<br>
-Generated and software feeds provided by: Yarrow project mentored by Dr. Nived Chebrolu and coded by Aadya Srivastava <br><br>
+Generated and software feeds provided by: SSP as mentored by Dr. Nived Chebrolu and coded by Aadya Srivastava <br><br>
 
 ### License Terms
 Copyright 2024
