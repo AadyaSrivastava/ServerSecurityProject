@@ -2,8 +2,8 @@
 
 clear
 
-_malwaremodule='yarrow_malwaredetect.sh'
-_documentemodule='yarrow_documents.sh'
+_malwaremodule='module1.sh'
+_documentemodule='module2.sh'
 
 echo ""
 echo "***************************************************"
@@ -27,32 +27,32 @@ case "$_input" in
         echo "Enter zip code:"
         read _zip
         ./$_malwaremodule 1 "$_zip"
-        echo "Malware Module completed. Press any key to start scanning for document leaks.."
-        read a
+        # echo "Malware Module completed. Press any key to start scanning for document leaks.."
+        # read a
         ./$_documentemodule 2 "$_zip"
         ;;
     2)
         echo "Enter city name:"
         read _city
         ./$_malwaremodule 2 "$_city"
-        echo "Malware Module completed. Press any key to start scanning for document leaks.."
-        read a
+        # echo "Malware Module completed. Press any key to start scanning for document leaks.."
+        # read a
         ./$_documentemodule 2 "$_city"
         ;;
     3)
         echo "Enter country code (ISO 3166-1):"
         read _country
         ./$_malwaremodule 3 "$_country"
-        echo "Malware Module completed. Press any key to start scanning for document leaks.."
-        read a
+#         echo "Malware Module completed. Press any key to start scanning for document leaks.."
+#         read a
         ./$_documentemodule 2 "$_country"
         ;;
     4)
         echo "Enter DNS Name (www.domain.com) or TDL (*.domain.com):"
         read _host
         ./$_malwaremodule 4 "$_host"
-        echo "Malware Module completed. Press any key to start scanning for document leaks.."
-        read a
+        # echo "Malware Module completed. Press any key to start scanning for document leaks.."
+        # read a
         ./$_documentemodule 2 "$_host"
         ;;
     5)
@@ -65,8 +65,8 @@ case "$_input" in
         echo "Scan the Complete Internet"
         sleep 2
         ./$_malwaremodule 5
-        echo "Malware Module completed. Press any key to start scanning for document leaks.."
-        read a
+        # echo "Malware Module completed. Press any key to start scanning for document leaks.."
+        # read a
         ./$_documentemodule 5
         ;;
 
