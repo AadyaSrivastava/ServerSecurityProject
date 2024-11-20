@@ -9,7 +9,7 @@ mkdir OPENDIRS_"$_DIRUID"
 _UA='"Yarrow Open-Source Scanner V1.00.011024.A"'
 
 # API Username and Password #
-_auth='3d45c090-702c-43da-a3f1-a134f5299907:YCeWVa7FXhZHZVxiYK4JzLVeKHDV4agv'
+_auth='USER:PASS'
 
 # Censys URL #
 _baseurl='"https://search.censys.io/api/v2/hosts/search?q='
@@ -89,16 +89,16 @@ _errors=0
 _process=true
 _firstrun=true
 
-echo "<html>" > Out_Files_Feed_"$_DIRUID".html
-echo "<head>" >> Out_Files_Feed_"$_DIRUID".html
-echo "<title>Response Feed: $_title</title>" >> Out_Files_Feed_"$_DIRUID".html
-echo "</head>" >> Out_Files_Feed_"$_DIRUID".html
-echo "<body>" >> Out_Files_Feed_"$_DIRUID".html
-echo "<br><h1><b>$_title</b></h1><br>" >> Out_Files_Feed_"$_DIRUID".html
+echo "<html>" > VULN_"$_qcase"_"$_DIRUID".html
+echo "<head>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "<title>Response Feed: $_title</title>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "</head>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "<body>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "<br><h1><b>$_title</b></h1><br>" >> VULN_"$_qcase"_"$_DIRUID".html
 echo "<html>" > OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
-echo "<head>" >> Out_Files_Feed_"$_DIRUID".html
-echo "<title>Error Feed: $_title</title>" >> Out_Files_Feed_"$_DIRUID".html
-echo "</head>" >> Out_Files_Feed_"$_DIRUID".html
+echo "<head>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "<title>Error Feed: $_title</title>" >> VULN_"$_qcase"_"$_DIRUID".html
+echo "</head>" >> VULN_"$_qcase"_"$_DIRUID".html
 echo "<body>" >> OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
 echo "<br><h1><b>Error Logs</b></h1><br>" >> OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
 echo "<b>Day_Time,Country,City,IP:Port,URL</b><br>" >> OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
@@ -278,14 +278,14 @@ do
                 
                 
                 # Save file lists in feed for production #
-                echo "<br><b>Server IP:</b> $_ipadd" >> Out_Files_Feed_"$_DIRUID".html
-                echo "<br><b>Server Port:</b> $_port" >> Out_Files_Feed_"$_DIRUID".html
-                echo "<br><b>Server Location:</b> $_city, $_country" >> Out_Files_Feed_"$_DIRUID".html
+                echo "<br><b>Server IP:</b> $_ipadd" >> VULN_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server Port:</b> $_port" >> VULN_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server Location:</b> $_city, $_country" >> VULN_"$_qcase"_"$_DIRUID".html
                 
-                echo "<br><b>DNS Name:</b> $_dnsnames" >> Out_Files_Feed_"$_DIRUID".html
-                echo "<br><b>Server OS:</b> $_oscpe" >> Out_Files_Feed_"$_DIRUID".html
+                echo "<br><b>DNS Name:</b> $_dnsnames" >> VULN_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server OS:</b> $_oscpe" >> VULN_"$_qcase"_"$_DIRUID".html
                     
-                echo "<br><br><u>Server port and software info:</u><br>" >> Out_Files_Feed_"$_DIRUID".html                 
+                echo "<br><br><u>Server port and software info:</u><br>" >> VULN_"$_qcase"_"$_DIRUID".html                 
                 # Get software-cpe combo and load them in an array #
                 for ((i=2; i<=_soccurances+1; i++))
                 do
@@ -309,7 +309,7 @@ do
                         _cpeport=${_cperaw1%?}
                         
                     fi
-                    echo "$_cpeport<br>">> Out_Files_Feed_"$_DIRUID".html
+                    echo "$_cpeport<br>">> VULN_"$_qcase"_"$_DIRUID".html
                     # echo _cpe: $_cpe
                     # echo _cpeport: $_cpeport
                     # _out[$i]=${_cpe%%\"\}\]\,\ } 
@@ -317,9 +317,9 @@ do
                 done
 
                
-                echo "<br><u>Whois Contacts:</u><br>" >> Out_Files_Feed_"$_DIRUID".html
+                echo "<br><u>Whois Contacts:</u><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                 while read -r _aline; do
-                    echo "$_aline<br>" >> Out_Files_Feed_"$_DIRUID".html
+                    echo "$_aline<br>" >> VULN_"$_qcase"_"$_DIRUID".html
                 done < abuse.txt
                 
                 mv email.txt OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt
@@ -328,23 +328,23 @@ do
                 
                 if [ $_live == "true" ]; then
                     if [[ "$_port" == "443" ]]; then 
-                        echo "<br><b><font color="green">Live URL:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Out_Files_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="green">Live URL:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                     else
-                        echo "<br><b><font color="green">Live URL:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Out_Files_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="green">Live URL:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                     fi
                 else
                     if [[ "$_port" == "443" ]]; then 
-                        echo "<br><b> <font color="red"> URL is inaccessible:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Out_Files_Feed_"$_DIRUID".html
+                        echo "<br><b> <font color="red"> URL is inaccessible:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                     else
-                        echo "<br><b> <font color="red"> URL is inaccessible: </font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Out_Files_Feed_"$_DIRUID".html
+                        echo "<br><b> <font color="red"> URL is inaccessible: </font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                     fi
                 fi
                 
-                echo "<b>Dev Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>" >> Out_Files_Feed_"$_DIRUID".html
-                echo "<br><b>Whois Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt target="_blank" rel="noopener noreferrer">$_ipadd contact details (raw json)</a>" >> Out_Files_Feed_"$_DIRUID".html
+                echo "<b>Dev Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>" >> VULN_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Whois Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt target="_blank" rel="noopener noreferrer">$_ipadd contact details (raw json)</a>" >> VULN_"$_qcase"_"$_DIRUID".html
 
-                echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> Out_Files_Feed_"$_DIRUID".html
-                echo "<br><br><hr width="100%" size="1"><br>" >> Out_Files_Feed_"$_DIRUID".html
+                echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> VULN_"$_qcase"_"$_DIRUID".html
+                echo "<br><br><hr width="100%" size="1"><br>" >> VULN_"$_qcase"_"$_DIRUID".html
                 
                 # Remove working file #
                 rm -rf "$_cfname"
@@ -366,12 +366,12 @@ do
     then
         echo "This is the last entry, quitting.."
         
-        echo "<br><b>Total Records Found:</b>" $_total >> Out_Files_Feed_"$_DIRUID".html
-        echo "<br><b>Servers accessible:</b> $_recread<br>">> Out_Files_Feed_"$_DIRUID".html
+        echo "<br><b>Total Records Found:</b>" $_total >> VULN_"$_qcase"_"$_DIRUID".html
+        echo "<br><b>Servers accessible:</b> $_recread<br>">> VULN_"$_qcase"_"$_DIRUID".html
 
         # Close HTML file tags #
-        echo "</body>" >> Out_Files_Feed_"$_DIRUID".html
-        echo "</html>" >> Out_Files_Feed_"$_DIRUID".html
+        echo "</body>" >> VULN_"$_qcase"_"$_DIRUID".html
+        echo "</html>" >> VULN_"$_qcase"_"$_DIRUID".html
         echo "</body>" >> OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
         echo "</html>" >> OPENDIRS_"$_DIRUID"/Files_Error_Feed_"$_DIRUID".html
         
