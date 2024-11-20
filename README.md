@@ -1,13 +1,13 @@
 # **ServerSecurityProject (SSP)** 
 ### An open-source passive Internet scanner that monitors open-directories and detects phishing pages.
 <br>
-SSP is an open-source and modular internet scanner that assists in the passive detection of:
-- Module 1: Servers with open directories that host malicious executables, files;
-- Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and
+SSP is an open-source and modular internet scanner that assists in the passive detection of:<br>
+- Module 1: Servers with open directories that host malicious executables, files;<br>
+- Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and<br>
 - Module 3: Detects phishing pages (customisable by a user to detect phishing against their own organisation).   
-<br>
+<br><br>
 SSP's first module intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
-
+<br><br>
 SSP's second module detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
 
 SSP's third module detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
@@ -16,14 +16,14 @@ SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford Un
 
 <br><br>
 
-**Task List for module**
+**Pending Task List**
 - [ ] Bridge with malware database
 - [ ] Integtate with Whois datasbase
 - [ ] Generate RSD
 
 <br><br>
 **Project Supported by:**<br>
-Censys (www.censys.io)
+Censys (www.censys.com)
 <br><br>
 **Project Mentor**:  Dr. Nived Chebrolu, Oxford University<br>
 **Project Founder**: Aadya Srivastava, Student at NAS Dubai<br>
