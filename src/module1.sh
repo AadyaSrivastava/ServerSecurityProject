@@ -9,7 +9,7 @@ mkdir OPENDIRS_"$_DIRUID"
 _UA='"Yarrow Open-Source Scanner V1.00.011024.A"'
 
 # API Username and Password #
-_auth='3d45c090-702c-43da-a3f1-a134f5299907:YCeWVa7FXhZHZVxiYK4JzLVeKHDV4agv'
+_auth='USER:PASS'
 
 # Censys URL #
 _baseurl='"https://search.censys.io/api/v2/hosts/search?q='
@@ -89,19 +89,19 @@ _errors=0
 _process=true
 _firstrun=true
 
-echo "<html>" > Out_Malware_Feed_"$_DIRUID".html
-echo "<head>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<title>Response Feed: $_title</title>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "</head>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<body>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<br><h1><b>$_title</b></h1><br>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<html>" > OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
-echo "<head>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<title>Error Feed: $_title</title>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "</head>" >> Out_Malware_Feed_"$_DIRUID".html
-echo "<body>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
-echo "<br><h1><b>Error Logs</b></h1><br>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
-echo "<b>Day_Time,Country,City,IP:Port,URL</b><br>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
+echo "<html>" > MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<head>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<title>Response Feed: $_title</title>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "</head>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<body>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<br><h1><b>$_title</b></h1><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<html>" > OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
+echo "<head>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<title>Error Feed: $_title</title>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "</head>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+echo "<body>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
+echo "<br><h1><b>Error Logs</b></h1><br>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
+echo "<b>Day_Time,Country,City,IP:Port,URL</b><br>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
 while [ _process=true ]
 do
 
@@ -251,8 +251,8 @@ do
             #echo curlstat: $?
             
             echo "Error when connecting with "$_ipadd":"$_port" at "$_ctime""
-            echo "Error logged in file OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html"
-            echo "$_ctime,$_country,$_city,<a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
+            echo "Error logged in file OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html"
+            echo "$_ctime,$_country,$_city,<a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
             
         else
             
@@ -277,14 +277,14 @@ do
                 
                 
                 # Save file lists in feed for production #
-                echo "<br><b>Server IP:</b> $_ipadd" >> Out_Malware_Feed_"$_DIRUID".html
-                echo "<br><b>Server Port:</b> $_port" >> Out_Malware_Feed_"$_DIRUID".html
-                echo "<br><b>Server Location:</b> $_city, $_country" >> Out_Malware_Feed_"$_DIRUID".html
+                echo "<br><b>Server IP:</b> $_ipadd" >> MALWARE_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server Port:</b> $_port" >> MALWARE_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server Location:</b> $_city, $_country" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 
-                echo "<br><b>DNS Name:</b> $_dnsnames" >> Out_Malware_Feed_"$_DIRUID".html
-                echo "<br><b>Server OS:</b> $_oscpe" >> Out_Malware_Feed_"$_DIRUID".html
+                echo "<br><b>DNS Name:</b> $_dnsnames" >> MALWARE_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Server OS:</b> $_oscpe" >> MALWARE_"$_qcase"_"$_DIRUID".html
                     
-                echo "<br><br><u>Server port and software info:</u><br>" >> Out_Malware_Feed_"$_DIRUID".html                 
+                echo "<br><br><u>Server port and software info:</u><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html                 
                 # Get software-cpe combo and load them in an array #
                 for ((i=2; i<=_soccurances+1; i++))
                 do
@@ -308,21 +308,21 @@ do
                         _cpeport=${_cperaw1%?}
                         
                     fi
-                    echo "$_cpeport<br>">> Out_Malware_Feed_"$_DIRUID".html
+                    echo "$_cpeport<br>">> MALWARE_"$_qcase"_"$_DIRUID".html
                     # echo _cpe: $_cpe
                     # echo _cpeport: $_cpeport
                     # _out[$i]=${_cpe%%\"\}\]\,\ } 
                     # echo _out[$i]: ${_out[$i]}
                 done
 
-                # echo "<br><u>Email Contact:</u><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                # echo "<br><u>Email Contact:</u><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 # while read -r _eline; do
-                #     echo "$_eline<br>" >> Out_Malware_Feed_"$_DIRUID".html
+                #     echo "$_eline<br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 # done < email.txt
                 
-                echo "<br><u>Whois Contact:</u><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                echo "<br><u>Whois Contact:</u><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 while read -r _aline; do
-                    echo "$_aline<br>" >> Out_Malware_Feed_"$_DIRUID".html
+                    echo "$_aline<br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 done < abuse.txt
                 
                 mv email.txt OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt
@@ -331,23 +331,23 @@ do
                 
                 if [ $_live == "true" ]; then
                     if [[ "$_port" == "443" ]]; then 
-                        echo "<br><b><font color="green">Live URL:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="green">Live URL:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                     else
-                        echo "<br><b><font color="green">Live URL:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="green">Live URL:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                     fi
                 else
                     if [[ "$_port" == "443" ]]; then 
-                        echo "<br><b><font color="red">URL is inaccessible:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="red">URL is inaccessible:</font></b> <a href=https://$_ipadd:$_port target="_blank" rel="noopener noreferrer">https://$_ipadd:$_port</a><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                     else
-                        echo "<br><b><font color="red">URL is inaccessible:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                        echo "<br><b><font color="red">URL is inaccessible:</font></b> <a href=http://$_ipadd:$_port target="_blank" rel="noopener noreferrer">http://$_ipadd:$_port</a><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                     fi
                 fi
                 
-                echo "<b>Dev Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>" >> Out_Malware_Feed_"$_DIRUID".html
-                echo "<br><b>Whois Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt target="_blank" rel="noopener noreferrer">$_ipadd contact details (raw json)</a>" >> Out_Malware_Feed_"$_DIRUID".html
+                echo "<b>Dev Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/$_cfname target="_blank" rel="noopener noreferrer">$_cfname</a>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+                echo "<br><b>Whois Logs:</b> <a href=./OPENDIRS_"$_DIRUID"/whois_$_ipadd.txt target="_blank" rel="noopener noreferrer">$_ipadd contact details (raw json)</a>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 
-                echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> Out_Malware_Feed_"$_DIRUID".html
-                echo "<br><br><hr width="100%" size="1"><br>" >> Out_Malware_Feed_"$_DIRUID".html
+                echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+                echo "<br><br><hr width="100%" size="1"><br>" >> MALWARE_"$_qcase"_"$_DIRUID".html
                 
                 # Remove working file #
                 rm -rf "$_cfname"
@@ -369,14 +369,14 @@ do
     then
         echo "This is the last entry, quitting.."
         
-        echo "<br><b>Total Records Found:</b>" $_total >> Out_Malware_Feed_"$_DIRUID".html
-        echo "<br><b>Servers accessible:</b> $_recread<br>">> Out_Malware_Feed_"$_DIRUID".html
+        echo "<br><b>Total Records Found:</b>" $_total >> MALWARE_"$_qcase"_"$_DIRUID".html
+        echo "<br><b>Servers accessible:</b> $_recread<br>">> MALWARE_"$_qcase"_"$_DIRUID".html
 
         # Close HTML file tags #
-        echo "</body>" >> Out_Malware_Feed_"$_DIRUID".html
-        echo "</html>" >> Out_Malware_Feed_"$_DIRUID".html
-        echo "</body>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
-        echo "</html>" >> OPENDIRS_"$_DIRUID"/Err_Malware_Feed_"$_DIRUID".html
+        echo "</body>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+        echo "</html>" >> MALWARE_"$_qcase"_"$_DIRUID".html
+        echo "</body>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
+        echo "</html>" >> OPENDIRS_"$_DIRUID"/Err_MALWARE_Feed_"$_DIRUID".html
         
         # Exit while loop #
         _process=false
