@@ -1,6 +1,4 @@
-This folder contains feeds within the sub-folders:
-- Open-dirs (OPN):  Servers that host executables with directory viewing as enabled
-- Malware: Servers that host malware _(under development)_
-- Phishing_Sites: Maliciously webpages that are intended for cyber attacks and credential harvesting
-- Inaccessible_List_of_Servers (ISL): Servers that historically had open directory listing but are now inaccessible.
-
+This folder contains feeds as per the following nomenclature:
+- Servers that host executables: MALWARE_COUNTRY-CODE_DD_MM_YYY_HH_MM_SS.html
+- Servers that leak sensitive data: VULN_COUNTRY-CODE_DD_MM_YYY_HH_MM_SS.html
+- Servers that host phishing pages: PHISH_COUNTRY-CODE_DD_MM_YYY_HH_MM_SS.html
