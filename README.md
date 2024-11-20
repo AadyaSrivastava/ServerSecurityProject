@@ -11,7 +11,7 @@ SSP is an open-source and modular internet scanner that assists in the passive d
 <ins>SSP's second module</ins> detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
 <br><br>
 <ins>SSP's third module</ins> detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
-
+<br><br>
 SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford University) and supported by Censys (censys.com, that originated at University of Michigan) that publishes an open-source (MIT license) server feed and follows a non-disclosure policy of 45 days. The 45 days disclosure may be extended on request of the hosting provider or website owner
 
 <br><br>
@@ -29,32 +29,26 @@ Censys (www.censys.com)
 <ins>Project Mentor:</ins>  Dr. Nived Chebrolu, Oxford University<br>
 <ins>Project Founder:</ins> Aadya Srivastava, Student at NAS Dubai<br>
 <br><br>
-# How to setup?
+# Setup and Running
 SSP is developed in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems.  
 
 Step 1: Download the files in the source directory (SRC) and enter Censys API credentials in line 7 of module1.sh.
 
 Step 2: Grant permissions to all three files by typing the following in the terminal:
 
-`chmod +x main.sh
-`chmod +x main.sh
-
-`chmod +x module1.sh
-`chmod +x module2.sh
-
-Step 3: Run the main file:
-`./main.sh
-`
+`chmod +x main.sh`<br>
+`chmod +x module1.sh`<br>
+`chmod +x module2.sh`<br>
+<br>
+Step 3: Run the main file:<br>
+`./main.sh`
 <br><br>
 SSP creates the following outputs:
 - Timestamped folder that will save the results from Censys,
 - Unique files that contain the list of IP and port number of servers
-- Feed file that contains the timestampe (space delimited Date and Time) list of IP and port number of servers in the format:
-
-        Timestamp    IP    Port    Full URL   Ref_file   Ref_feed
-        ---------------------------------------------------------
+- HTML encoded Feed file containing IP, port number, location (City, Country), Server OS, installed software, URL, and detilaed logs.
 
 <br><br>
 # Access Feed File
 
-Feed files are available in folder, "Feed" within repository that contains files that bear the filename of the day and time they were created. The files are space delimited. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Censys, Yarrow, and other partners. For more information please contact me at yarrow@kidsforreading.com
+Feed files are available in folder, "Feeds" within the repository that contains files that bear the filename of the day and time they were created. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Dr. Nived Chebrolu, Aadya Srivastava, Censys, SSP, and other partners. For more information please contact us at contact [at] serversecurityproject [.] com
