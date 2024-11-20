@@ -6,11 +6,11 @@ SSP is an open-source and modular internet scanner that assists in the passive d
 - Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and<br>
 - Module 3: Detects phishing pages (customisable by a user to detect phishing against their own organisation).   
 <br><br>
-_SSP's first module_ intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
+<ins>SSP's first module</ins> intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
 <br><br>
-SSP's second module detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
-
-SSP's third module detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
+<ins>SSP's second module</ins> detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
+<br><br>
+<ins>SSP's third module</ins> detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
 
 SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford University) and supported by Censys (censys.com, that originated at University of Michigan) that publishes an open-source (MIT license) server feed and follows a non-disclosure policy of 45 days. The 45 days disclosure may be extended on request of the hosting provider or website owner
 
@@ -26,8 +26,8 @@ SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford Un
 **Project Supported by:**<br>
 Censys (www.censys.com)
 <br><br>
-**Project Mentor**:  Dr. Nived Chebrolu, Oxford University<br>
-**Project Founder**: Aadya Srivastava, Student at NAS Dubai<br>
+<ins>Project Mentor:</ins>  Dr. Nived Chebrolu, Oxford University<br>
+<ins>Project Founder:</ins> Aadya Srivastava, Student at NAS Dubai<br>
 <br><br>
 # How to setup?
 SSP is developed in bash script it will run across all Mac OS, Linux, FreeBSD and other open-source operating systems.  
