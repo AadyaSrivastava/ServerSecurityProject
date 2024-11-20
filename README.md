@@ -5,7 +5,7 @@ SSP is an open-source and modular internet scanner that assists in the passive d
 - Module 1: Servers with open directories that host malicious executables, files;
 - Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and
 - Module 3: Detects phishing pages (customisable by a user to detect phishing against their own organisation).   
-
+<br>
 SSP's first module intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
 
 SSP's second module detects misconfigured servers that host documents, databases, or other files that may contain passwords (/etc/passwd, sql credentials, and others) and then informs the webhost owners. 
