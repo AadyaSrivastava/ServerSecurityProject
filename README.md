@@ -39,6 +39,7 @@ Step 2: Grant permissions to all three files by typing the following in the term
 `chmod +x main.sh`<br>
 `chmod +x module1.sh`<br>
 `chmod +x module2.sh`<br>
+`chmod +x module3.sh`<br>
 <br>
 Step 3: Run the main file:<br>
 `./main.sh`
