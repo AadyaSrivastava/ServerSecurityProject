@@ -20,6 +20,7 @@ echo "Press 2 for City Name"
 echo "Press 3 for Country code (ISO 3166-1 country code - (US, CN, GB, etc))"
 echo "Press 4 to search by Hostname"
 echo "Press 5 to scan the Internet"
+echo "Press 6 to scan the Internet for Google Mail Phishing Sites"
 # echo "Press 6 to scan the Internet"
 read _input
 case "$_input" in
@@ -68,6 +69,15 @@ case "$_input" in
         # echo "Malware Module completed. Press any key to start scanning for document leaks.."
         # read a
         ./$_documentemodule 5
+        ;;
+    
+    6)
+        echo "Scan the Internet for Google Mail Phishing Sites"
+        sleep 2
+        ./module3.sh
+        # echo "Malware Module completed. Press any key to start scanning for document leaks.."
+        # read a
+        # ./$_documentemodule 5
         ;;
 
     *)
