@@ -52,4 +52,11 @@ SSP creates the following outputs:
 <br><br>
 # Access Feed File
 
-Feed files are available in folder, "feed" within the repository that contains files that bear the filename of the day and time they were created. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Dr. Nived Chebrolu, Aadya Srivastava, Censys, SSP, and other partners. For more information please contact us at contact [at] serversecurityproject [.] com
+Feed files are available in folder, "feed" within the repository that contains files that bear the filename of the day and time they were created. These files can be downloaded, freely used, distributed, or re-packaged with a citation to Dr. Nived Chebrolu, Aadya Srivastava, Censys, SSP, and other partners. For more information or you would like to gain access to raw scanning logs then please contact us at contact [at] serversecurityproject [.] com<br><br>
+
+<ins>For raw scanning logs</ins>: We are happy to provide raw scanning logs and would request the following information:<br>
+Name of site:<br>
+URL:<br>
+Project Founders (name and email):<br>
+How do you intend to use the logs (just a few lines):<br>
+
