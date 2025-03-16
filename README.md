@@ -1,7 +1,7 @@
 # **ServerSecurityProject (SSP)** 
 ### An open-source passive Internet scanner that detects phishing pages.
 <br>
-SSP is an open-source and modular internet scanner that assists in the passive detection of:<br>
+SSP is an open-source and modular internet scanner that assists in the passive detection of servers that host malicous pages for credential harvesting. Using assistance from Censys.com, SSP scans millions of IP addresses across the internet to generate a feed <br>
 - Module 1: Servers with open directories that host malicious executables, files;<br>
 - Module 2: Server that are misconfigures and host documents, databases, or other proprietary information; and<br>
 - Module 3: Detects phishing pages (customisable by a user to detect phishing against their own organisation).   
