@@ -1,13 +1,11 @@
 # **ServerSecurityProject (SSP)** 
 ### An open-source passive Internet scanner that detects phishing or crdential harvesting pages.
 <br>
-SSP is an open-source modular internet scanner that passively detects servers hosting malicous pages for credential harvesting. SSP utilizes Censys' data-feeds to detect suspicious pages which are then scanned by SSP's internal engine that uses fuzzy-logic and assigned weights to accurately determine phishing pages. 
+SSP is an open-source modular internet scanner that passively detects servers hosting malicous pages for credential harvesting. SSP utilizes Censys' data-feeds to detect suspicious pages which are then scanned by SSP's internal engine that uses fuzzy-logic and assigned weights to accurately determine phishing pages. The platform has been programmed in bash and HTML to ensure low overhead and interoperability across the Linux, FreeBSD, MacOS, and other open-source OSes. SSP has two modules: <br><br>
 
-The platform has been programmed in bash and HTML to ensure low overhead and interoperability across the Linux, FreeBSD, MacOS, and other open-source OSes. SSP has two modules: <br>
-
-- Module 1: Downloads suspicious websites using Censys data-feeds. This module is editable so that the user may initiate downloads of other credential harvesting websites, corporate login, or run customized scans across the Censys' supplied data-feeds;<br>
-- Module 2: Downloads HTML, javascripts, and connected resources of suspicious pages as obtained in module 1 for offline analysis; and<br>
-- Module 3: Detects phishing pages using defined fuzzy logic and weights. This section is embedded within module 2 and is editable ensuring that the user may change the logic and weights to detect custom credential harvesting phishing site(s).    
+<ins>Module 1:</ins> Downloads suspicious websites using Censys data-feeds. This module is editable so that the user may initiate downloads of other credential harvesting websites, corporate login, or run customized scans across the Censys' supplied data-feeds;<br>
+<ins>Module 2:</ins> Downloads HTML, javascripts, and connected resources of suspicious pages as obtained in module 1 for offline analysis; and<br>
+<ins>Module 3:</ins> Detects phishing pages using defined fuzzy logic and weights. This section is embedded within module 2 and is editable ensuring that the user may change the logic and weights to detect custom credential harvesting phishing site(s).    
 <br><br>
 <ins>SSP's first module</ins> intends to ensure that the internet is a safe and secure virtual space by passively scanning and blocking threats without end-user actions. This module passively detects malware on internet hosted Command and Control (C2) servers, inform the webhosts (admin and abuse contacts) of the vulnerability, and then publishes a list of such servers as non-commerical open-source lists. This module enables security of end-users such as schools, hospitals, non-profit, or other organisations that may not afford the purchase of expensive anti-virus and security software licenses. 
 <br><br>
@@ -15,8 +13,8 @@ The platform has been programmed in bash and HTML to ensure low overhead and int
 <br><br>
 <ins>SSP's third module</ins> detects phishing pages across the internet for various email providers via a Ruleset Database (RSD) inspired from Yara rules. RSD is an open-source plugin that enables detection of any phishing page for email, corporate logins, payment providers, or other pages that malicisously harvest credentials. 
 <br><br>
-SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford University) and supported by Censys (censys.com, that originated at University of Michigan) that publishes a monthly open-source (MIT license) server feed and follows a non-disclosure policy of 45 days. The 45 days disclosure may be extended on request of the hosting provider or website owner
-
+<ins>About SSP:</ins><br>SSP is as open-source research project mentored by Dr. Nived Chebrolu (Oxford University) and supported by Censys (censys.com, that originated at University of Michigan) that publishes a monthly open-source (MIT license) server feed and follows a non-disclosure policy of 45 days. The 45 days disclosure may be extended on request of the hosting provider or website owner
+asdaasd
 <br><br>
 
 
