@@ -1,5 +1,5 @@
 This section contains the latest feed with the following files:
- - Report_Gmail_DD_MM_YYYY_HH_MM_SS.html: Contains an HTML list of active and inactive phishing sites.
+ - Report_Gmail_DD_MM_YYYY_HH_MM_SS.zip: Contains an HTML list of active, inactive phishing sites, and offline sites. Unzip the folder and click on the HTML file (Report_Gmail_*.html)
  - Active_Feed_Gmail_DD_MM_YYYY_HH_MM_SS.txt: Contains a list of active phishing sites.
  - Inactive_Feed_Gmail_DD_MM_YYYY_HH_MM_SS.txt: Contains a list of inactive phishing sites.
 <br>
