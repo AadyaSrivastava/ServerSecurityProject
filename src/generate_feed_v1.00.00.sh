@@ -1,16 +1,15 @@
 #!/bin/bash
-
+clear
 _rootdir=$(pwd)
 
 # User Agent #
-# _UA='"Yarrow Open-Source Scanner V1.00.011024.A"'
-_UA='"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36"'
+_UA='"Yarrow Open-Source Scanner V1.00.00.RC"'
+# _UA='"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36"'
 
 _outdir="$_rootdir"/output
 
 ls "$_rootdir"/sourcedata > srcdir.txt
 mkdir "$_outdir"
-
 # Set output folder name UID #
 _DIRUID=$(date '+%d_%m_%Y_%H_%M_%S')
 
@@ -37,6 +36,8 @@ echo "</style>" >> Report_Gmail_"$_DIRUID".html
 echo "</head>" >> Report_Gmail_"$_DIRUID".html
 
 
+
+
 while read -r _fname; do 
 
     _UID=$(date '+%d_%m_%Y_%H_%M_%S')
@@ -45,7 +46,7 @@ while read -r _fname; do
     # Get Mactched Services Element #
     _melementraw=${_input#*\"matched_services\"\:\ }
     _melement=${_melementraw%%\"links\"\:*}
-
+   
     # Get Total #
     _rawdata=${_input#*\"total\"\:\ }
     _total=${_rawdata%%\,\ \"*}
@@ -66,7 +67,7 @@ while read -r _fname; do
     _rawdata=${_input#*\"country_code\"\:\ \"}
     _country=${_rawdata%%\"*}
 
-     # Get Abuse Contact email
+    # Get Abuse Contact email
     if [[ $_input == *\"email* ]]; then
         _rawdata=${_input#*\"email\"\:\ \"}
         _abusect=${_rawdata%%\,\ \"*}
@@ -89,7 +90,7 @@ while read -r _fname; do
     # Last updated #
     _rawdata=${_input#*\"last_updated_at\"\:\ \"}
     _lupdate=${_rawdata%%Z\"\,\ *}
-
+    
     _othocc=false
     _othernames=$(echo -n "$_input" | grep -Fo '"name":' | wc -l)
     if [[ $_othernames -gt 0 ]]; then
@@ -101,8 +102,10 @@ while read -r _fname; do
         do
             _outnames[$i]=$(awk -v _i="$i" -F'\"name":\ \"' '{print $_i}' <<<$_input)
             _outnames[$i]=$(echo "${_outnames[$i]}" | awk -F'"' '{print $1}' )
+            # echo _out[$i]: ${_out[$i]}
             echo othname $i: ${_outnames[$i]}
         done
+
     fi
 
     
@@ -123,7 +126,7 @@ while read -r _fname; do
     if [[ $_orgoccurances -gt 0 ]]; then
         _rawdata=${_input#*\"organization\":\ \{\"}
         _rawdata2=${_rawdata#*\"name\"\:}
-        _orgname=${_rawdata2%%\}\}*}
+        _orgname=${_rawdata2%%\}*}
     else
         _orgname=$(echo "Org not found")
     fi
@@ -146,6 +149,7 @@ while read -r _fname; do
     echo _bgp_prefix: $_bgp_prefix
 
     # Get TLS Details
+    # echo _fname: $_fname
     _tlsinfo=false
     _tlsoccurances=$(echo -n "$_input" | grep -Fo '"tls"' | wc -l)
     if [[ $_tlsoccurances -gt 0 ]]; then
@@ -192,16 +196,13 @@ while read -r _fname; do
     
     # Get occurances of ports in response
     _occurances=$(echo -n $_melement | grep -Fo '"port":' | wc -l)
-    # echo _occurances: $_occurances
     
     # Get port numbers in response and load them in an array #
     for ((i=2; i<=_occurances+1; i++))
     do
         _out[$i]=$(awk -v _i="$i" -F'\"port\"\:' '{print $_i}' <<<$_melement)
-        # echo 1_out[$i]: ${_out[$i]}
         _portraw=${_out[$i]#*\"port\"\:\ }
         _out[$i]=${_portraw%%\}*} 
-        # echo _out-port[$i]: ${_out[$i]}
     done
     
     # Generate Feed for all ports that are accessbile for a IP#
@@ -209,10 +210,12 @@ while read -r _fname; do
     do
         # Parse port and get file listing from remote server #
         _port=$(echo ${_out[$i]} | tr -d ' ')
+   
         # generate temorary filename #
         _cfname=$(echo Gmail_"$_UID"-"$_ipadd"-"$_port".html)
         _cfnmtxt=$(echo Gmail_"$_UID"-"$_ipadd"-"$_port".txt)
         echo "Query Log: $_ipadd:$_port"
+   
         # Get suspected phishing page from live server #
         if [[ "$_port" == "443" ]]; 
             then 
@@ -246,12 +249,12 @@ while read -r _fname; do
                 if [[ $_interimdata == *"method=\"Post\""* ]]; then
                     _mailapp=true
                 fi
-
+   
                 if [[ $_mailapp == "true" ]]; then
 
                     # Valid reply found #
                     ((_recread=_recread+1))
-
+                    
                     _phishcheck1=true
                     _phishcheck2=true
                     _phishcheck3=true
@@ -267,12 +270,14 @@ while read -r _fname; do
                     if [[ "$_validate1" == 0 ]]; then
                         _phishcheck1=false
                     fi
+
                     # does file contain Google
                     if [[ $_interimdata == *"Gmail"* ]]; then
                         if [[ $_dnsnames == *"google"* ]]; then
                             _phishcheck2=false
                         fi
                     fi
+
                     # does file contain nofollow
                     if [[ $_interimdata != *"nofollow"* ]]; then
                         _phishcheck3=false
@@ -290,6 +295,7 @@ while read -r _fname; do
                         _phishcheck5=false
                     fi
                     
+
                     if [[ $_interimdata != *"password"* ]]; then
                         _phishcheck6=false
                     fi
@@ -306,6 +312,7 @@ while read -r _fname; do
                         _phishcheck9=false
                     fi
                     
+                    # echo _phishcheck: $_phishcheck
                     mv "$_cfname" "$_outdir"
                     mv "$_cfnmtxt" "$_outdir"
                     
@@ -313,9 +320,14 @@ while read -r _fname; do
                     mv "$_cfname" "$_rootdir"/ignored
                     mv "$_cfnmtxt" "$_rootdir"/ignored
                 fi # mail app is true master loop
-             
+                
+                           
+                
         fi # end of if [ $? -ne 0 ] ; then
-        
+
+        # echo _curlstatus: $_curlstatus _live: $_live 
+    
+
         if [[ $_mailapp == "true" ]]; then
             _ctime=$(date '+%d:%m:%Y %H:%M:%S')
             
@@ -436,18 +448,20 @@ while read -r _fname; do
 
             if [[ $_live == "true" ]]; 
             then
-                echo "<br><b>Raw Response Logs:</b> <a href='$_rootdir/output/$_cfname' target="_blank"> (View saved HTML)</a> <br>" >> Report_Gmail_"$_DIRUID".html
-                echo "<iframe src=\"file:///"$_outdir"/${_cfnmtxt}\" style=\"height:200px;width:80%\" title=\"Raw Response Logs:\"></iframe>"  >> Report_Gmail_"$_DIRUID".html
+                echo "<br><b>Raw Response Logs:</b> <a href='output/${_cfnmtxt}' target="_blank"> (View saved HTML as TXT)</a> <br>" >> Report_Gmail_"$_DIRUID".html
+                echo "<iframe src='output/${_cfname}'\" style=\"height:200px;width:80%\" title=\"Raw Response Logs:\"></iframe>"  >> Report_Gmail_"$_DIRUID".html
                 echo "<br>Input Ref: $_fname <br>" >> Report_Gmail_"$_DIRUID".html
                 echo "Output Ref: $_cfname <br>" >> Report_Gmail_"$_DIRUID".html
-                
+        
             fi
-
+            
             echo "<br><br><i>Last Updated: $_lupdate Z</i><br>" >> Report_Gmail_"$_DIRUID".html
             echo "<br><br><hr width="100%" size="3"><br>" >> Report_Gmail_"$_DIRUID".html
 
-        fi        
+            
+        fi
         
+            
     done # end of for ((i=0; i<_occurances; i++))
 
 done < srcdir.txt
