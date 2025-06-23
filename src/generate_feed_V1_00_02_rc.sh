@@ -500,7 +500,7 @@ while read -r _fname; do
             
     done # end of for ((i=0; i<_occurances; i++))
 
-done < srcdir.txt
+done < input_feed.csv
 
 echo "</html>" >> Report_Gmail_"$_DIRUID".html
 
